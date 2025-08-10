@@ -1,334 +1,312 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl" class="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>سایت شخصی حسن</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وب‌سایت شخصی من</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1D4ED8',
+                        secondary: '#3B82F6',
+                        accent: '#EF4444',
+                    },
+                    fontFamily: {
+                        sans: ['Vazirmatn', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Gradient Background */
+        body {
+            background: linear-gradient(to bottom, #f3f4f6, #dbeafe);
+        }
+        .dark body {
+            background: linear-gradient(to bottom, #1f2937, #111827);
+        }
 
-  <!-- فونت وزیر -->
-  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" />
-
-  <style>
-    * {
-      margin: 0; padding: 0; box-sizing: border-box;
-      font-family: 'Vazir', Tahoma, Geneva, Verdana, sans-serif;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    body {
-      background: #f0f8ff;
-      color: #222;
-      line-height: 1.6;
-      min-height: 100vh;
-      direction: rtl;
-      animation: fadeIn 1s ease forwards;
-    }
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-    a {
-      color: #0078d7;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    a:hover {
-      color: #005ea2;
-    }
-    header {
-      background: #0078d7;
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-    header h1 {
-      font-size: 1.8rem;
-      font-weight: bold;
-      cursor: default;
-    }
-    nav a {
-      margin-left: 1.5rem;
-      font-weight: 600;
-      font-size: 1rem;
-    }
-    nav a:last-child {
-      margin-left: 0;
-    }
-    main {
-      max-width: 960px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    section {
-      margin-bottom: 3rem;
-    }
-    .about {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0,120,215,0.2);
-      text-align: center;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    .about h2 {
-      margin-bottom: 1rem;
-      color: #0078d7;
-      transition: color 0.3s ease;
-    }
-    .about p {
-      font-size: 1.1rem;
-    }
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-      gap: 1.5rem;
-    }
-    .project-card {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      padding: 1rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-      cursor: pointer;
-    }
-    .project-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    }
-    .project-card h3 {
-      color: #0078d7;
-      margin-bottom: 0.5rem;
-      transition: color 0.3s ease;
-    }
-    .project-card p {
-      font-size: 0.95rem;
-      color: #444;
-    }
-    .contact {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0,120,215,0.2);
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    .contact h2 {
-      margin-bottom: 1rem;
-      color: #0078d7;
-      text-align: center;
-      transition: color 0.3s ease;
-    }
-    form {
-      max-width: 400px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    input, textarea {
-      padding: 0.75rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-      resize: vertical;
-      font-family: inherit;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-    }
-    input:focus, textarea:focus {
-      border-color: #0078d7;
-      outline: none;
-      box-shadow: 0 0 6px #0078d7aa;
-      background-color: #eaf4ff;
-      color: #222;
-    }
-    button {
-      padding: 0.75rem;
-      background: #0078d7;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    button:hover {
-      background: #005ea2;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #666;
-      background: #f0f8ff;
-      border-top: 1px solid #ddd;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    /* حالت تاریک */
-    body.dark {
-      background: #121212;
-      color: #eee;
-    }
-    body.dark header {
-      background: #1f1f1f;
-      box-shadow: 0 2px 6px rgba(255,255,255,0.1);
-    }
-    body.dark .about,
-    body.dark .contact,
-    body.dark .project-card {
-      background: #1f1f1f;
-      color: #ddd;
-      box-shadow: 0 0 10px rgba(0,120,215,0.5);
-    }
-    body.dark .about h2,
-    body.dark .contact h2,
-    body.dark .project-card h3,
-    body.dark a {
-      color: #4da6ff;
-    }
-    body.dark input, body.dark textarea {
-      background-color: #333;
-      border-color: #555;
-      color: #eee;
-    }
-    body.dark input:focus, body.dark textarea:focus {
-      background-color: #444;
-      border-color: #4da6ff;
-      box-shadow: 0 0 8px #4da6ffaa;
-      color: #fff;
-    }
-    body.dark footer {
-      background: #121212;
-      color: #aaa;
-      border-top: 1px solid #444;
-    }
-
-    /* دکمه‌های پایین سمت راست */
-    .bottom-buttons {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      display: flex;
-      gap: 10px;
-      z-index: 150;
-      flex-direction: row;
-    }
-    .bottom-buttons button {
-      background: #0078d7;
-      border: none;
-      border-radius: 50%;
-      width: 45px;
-      height: 45px;
-      cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 24px;
-      transition: background 0.3s ease;
-      padding: 0;
-      user-select: none;
-    }
-    .bottom-buttons button:hover {
-      background: #005ea2;
-    }
-    /* دکمه حالت تاریک گرد کوچکتر کمی */
-    .dark-mode-toggle {
-      border-radius: 12px;
-      width: 45px;
-      height: 45px;
-      font-size: 20px;
-    }
-  </style>
+        /* Loading Spinner */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        .dark #loader {
+            background: rgba(31, 41, 55, 0.9);
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f4f6;
+            border-top: 5px solid #3B82F6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        .dark .spinner {
+            border: 5px solid #1f2937;
+            border-top: 5px solid #60A5FA;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Creative Bouncing Ball */
+        .ball {
+            width: 20px;
+            height: 20px;
+            background: #EF4444;
+            border-radius: 50%;
+            animation: bounce 1.5s infinite ease-in-out;
+            position: absolute;
+        }
+        .ball:nth-child(1) { animation-delay: -0.3s; left: -30px; }
+        .ball:nth-child(2) { animation-delay: -0.15s; }
+        .ball:nth-child(3) { animation-delay: 0s; left: 30px; }
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <h1>حسن</h1>
-    <nav>
-      <a href="#about">درباره من</a>
-      <a href="#projects">پروژه‌ها</a>
-      <a href="#contact">تماس</a>
+<body class="font-sans leading-normal tracking-normal text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="relative flex space-x-2">
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-800 dark:to-blue-600 p-4 shadow-md fixed w-full z-10">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-white text-2xl font-bold">وب‌سایت من</h1>
+            <ul class="flex space-x-4 space-x-reverse">
+                <li><a href="#about" class="text-white hover:text-blue-200 transition duration-300">درباره من</a></li>
+                <li><a href="#skills" class="text-white hover:text-blue-200 transition duration-300">مهارت‌ها</a></li>
+                <li><a href="#portfolio" class="text-white hover:text-blue-200 transition duration-300">پورتفولیو</a></li>
+                <li><a href="#contact" class="text-white hover:text-blue-200 transition duration-300">تماس</a></li>
+            </ul>
+        </div>
     </nav>
-  </header>
 
-  <main>
-    <section id="about" class="about">
-      <h2>درباره من</h2>
-      <p>سلام! من حسن هستم. علاقه‌مند به برنامه‌نویسی، طراحی وب و تکنولوژی‌های جدید.</p>
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-blue-500 to-indigo-500 dark:from-blue-700 dark:to-indigo-700 text-white py-32" data-aos="fade-up">
+        <div class="container mx-auto text-center">
+            <h2 class="text-5xl font-bold mb-4 animate-pulse">خوش اومدی به وب‌سایت من!</h2>
+            <p class="text-xl mb-6">اینجا می‌تونی درباره من و کارهام بیشتر بدونی. زیباترین سایت دنیا!</p>
+            <a href="#about" class="bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-300 px-8 py-4 rounded-full font-semibold hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300">بیشتر بدون</a>
+        </div>
     </section>
 
-    <section id="projects" class="projects">
-      <div class="project-card">
-        <h3>وبسایت فروشگاهی</h3>
-        <p>یک فروشگاه آنلاین مدرن و ریسپانسیو با امکانات کامل خرید و پرداخت.</p>
-      </div>
-      <div class="project-card">
-        <h3>اپلیکیشن موبایل</h3>
-        <p>اپ اندرویدی کاربردی با طراحی زیبا و رابط کاربری آسان.</p>
-      </div>
-      <div class="project-card">
-        <h3>ربات تلگرام</h3>
-        <p>ربات چت خودکار برای پاسخگویی به سوالات کاربران به صورت هوشمند.</p>
-      </div>
+    <!-- About Section -->
+    <section id="about" class="py-20" data-aos="fade-right">
+        <div class="container mx-auto text-center">
+            <h3 class="text-4xl font-bold mb-6 text-blue-600 dark:text-blue-400">درباره من</h3>
+            <p class="text-lg max-w-3xl mx-auto leading-relaxed">
+                من یه آدم خلاق و پرشورم که عاشق یادگیری و ساختن چیزهای جدیده. از برنامه‌نویسی تا طراحی، همیشه دنبال چالش‌های جدیدم! این سایت با جدیدترین روندهای 2025 ساخته شده.
+            </p>
+        </div>
     </section>
 
-    <section id="contact" class="contact">
-      <h2>تماس با من</h2>
-      <form>
-        <input type="text" placeholder="نام شما" required />
-        <input type="email" placeholder="ایمیل شما" required />
-        <textarea rows="5" placeholder="پیام شما" required></textarea>
-        <button type="submit">ارسال</button>
-      </form>
+    <!-- Skills Section -->
+    <section id="skills" class="bg-gray-200 dark:bg-gray-800 py-20" data-aos="zoom-in">
+        <div class="container mx-auto text-center">
+            <h3 class="text-4xl font-bold mb-6 text-blue-600 dark:text-blue-400">مهارت‌ها</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300">
+                    <h4 class="text-2xl font-semibold mb-4">برنامه‌نویسی</h4>
+                    <p>مسلط به HTML، CSS، JavaScript و Python</p>
+                    <div class="mt-4 h-2 bg-blue-200 rounded-full">
+                        <div class="h-2 bg-blue-600 rounded-full" style="width: 90%;"></div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300">
+                    <h4 class="text-2xl font-semibold mb-4">طراحی</h4>
+                    <p>تجربه کار با Figma و Adobe XD</p>
+                    <div class="mt-4 h-2 bg-blue-200 rounded-full">
+                        <div class="h-2 bg-blue-600 rounded-full" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300">
+                    <h4 class="text-2xl font-semibold mb-4">مدیریت پروژه</h4>
+                    <p>آشنا با متدولوژی‌های Agile و Scrum</p>
+                    <div class="mt-4 h-2 bg-blue-200 rounded-full">
+                        <div class="h-2 bg-blue-600 rounded-full" style="width: 80%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-  </main>
 
-  <footer>
-    © 2025 حسن. همه حقوق محفوظ است.
-  </footer>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20" data-aos="fade-left">
+        <div class="container mx-auto text-center">
+            <h3 class="text-4xl font-bold mb-6 text-blue-600 dark:text-blue-400">پورتفولیو</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition duration-300">
+                    <img src="https://via.placeholder.com/400x250?text=Project+1" alt="Project 1" class="w-full">
+                    <div class="p-6">
+                        <h4 class="text-2xl font-semibold mb-2">پروژه ۱</h4>
+                        <p>توضیح مختصری درباره پروژه.</p>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition duration-300">
+                    <img src="https://via.placeholder.com/400x250?text=Project+2" alt="Project 2" class="w-full">
+                    <div class="p-6">
+                        <h4 class="text-2xl font-semibold mb-2">پروژه ۲</h4>
+                        <p>توضیح مختصری درباره پروژه.</p>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition duration-300">
+                    <img src="https://via.placeholder.com/400x250?text=Project+3" alt="Project 3" class="w-full">
+                    <div class="p-6">
+                        <h4 class="text-2xl font-semibold mb-2">پروژه ۳</h4>
+                        <p>توضیح مختصری درباره پروژه.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- دکمه‌های پایین سمت راست -->
-  <div class="bottom-buttons">
-    <button id="scrollTopBtn" aria-label="بازگشت به بالا">⬆️</button>
-    <button class="dark-mode-toggle" aria-label="تغییر حالت تاریک">🌙</button>
-  </div>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gradient-to-t from-gray-100 to-white dark:from-gray-900 dark:to-gray-800" data-aos="fade-up">
+        <div class="container mx-auto text-center">
+            <h3 class="text-4xl font-bold mb-6 text-blue-600 dark:text-blue-400">تماس با من</h3>
+            <p class="text-lg mb-8">برای ارتباط می‌تونی از فرم زیر استفاده کنی!</p>
+            <form class="max-w-lg mx-auto space-y-4">
+                <input type="text" placeholder="نام" class="w-full p-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
+                <input type="email" placeholder="ایمیل" class="w-full p-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
+                <textarea placeholder="پیام" class="w-full p-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 h-32"></textarea>
+                <button type="submit" class="bg-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-700 transition duration-300">ارسال</button>
+            </form>
+            <div class="flex justify-center space-x-4 space-x-reverse mt-8">
+                <a href="mailto:your.email@example.com" class="text-blue-600 dark:text-blue-400 hover:underline">ایمیل</a>
+                <a href="https://t.me/yourusername" class="text-blue-600 dark:text-blue-400 hover:underline">تلگرام</a>
+                <a href="https://instagram.com/yourusername" class="text-blue-600 dark:text-blue-400 hover:underline">اینستاگرام</a>
+            </div>
+        </div>
+    </section>
 
-  <script>
-    // دکمه حالت تاریک
-    const toggleBtn = document.querySelector('.dark-mode-toggle');
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      if(document.body.classList.contains('dark')) {
-        toggleBtn.textContent = '☀️';
-        toggleBtn.setAttribute('aria-label', 'تغییر به حالت روشن');
-      } else {
-        toggleBtn.textContent = '🌙';
-        toggleBtn.setAttribute('aria-label', 'تغییر حالت تاریک');
-      }
-    });
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-800 dark:to-blue-600 text-white py-6">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 وب‌سایت شخصی من. همه حقوق محفوظه.</p>
+        </div>
+    </footer>
 
-    // دکمه اسکرول بالا
-    const scrollBtn = document.getElementById('scrollTopBtn');
-    window.addEventListener('scroll', () => {
-      if(window.scrollY > 300) {
-        scrollBtn.style.display = 'flex';
-      } else {
-        scrollBtn.style.display = 'none';
-      }
-    });
-    scrollBtn.addEventListener('click', () => {
-      window.scrollTo({top: 0, behavior: 'smooth'});
-    });
+    <!-- Floating Buttons -->
+    <div class="fixed bottom-4 right-4 flex flex-col space-y-2 z-50">
+        <!-- Dark Mode Toggle -->
+        <button id="dark-mode-toggle" class="bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-300 p-3 rounded-full shadow-lg hover:bg-gray-200 dark:hover:bg-gray-700">
+            <span class="light-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-moon" viewBox="0 0 16 16">
+                    <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278M4.858 1.311A7.27 7.27 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.32 7.32 0 0 0 5.205-2.162q-.506.063-1.029.063c-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286"/>
+                </svg>
+            </span>
+            <span class="dark-icon hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-sun" viewBox="0 0 16 16">
+                    <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/>
+                </svg>
+            </span>
+        </button>
+        <!-- Scroll to Top -->
+        <button id="scroll-to-top" class="bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-300 p-3 rounded-full shadow-lg hover:bg-gray-200 dark:hover:bg-gray-700 hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+            </svg>
+        </button>
+    </div>
 
-    // اول مخفی باشن
-    scrollBtn.style.display = 'none';
-  </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000 });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Dark Mode
+        const html = document.documentElement;
+        const toggleButton = document.getElementById('dark-mode-toggle');
+        const lightIcon = toggleButton.querySelector('.light-icon');
+        const darkIcon = toggleButton.querySelector('.dark-icon');
+
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+            lightIcon.classList.add('hidden');
+            darkIcon.classList.remove('hidden');
+        } else {
+            html.classList.remove('dark');
+            lightIcon.classList.remove('hidden');
+            darkIcon.classList.add('hidden');
+        }
+
+        toggleButton.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+                lightIcon.classList.remove('hidden');
+                darkIcon.classList.add('hidden');
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+                lightIcon.classList.add('hidden');
+                darkIcon.classList.remove('hidden');
+            }
+        });
+
+        // Scroll to Top
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.remove('hidden');
+            } else {
+                scrollToTopBtn.classList.add('hidden');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Loading Screen
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        });
+
+        // Contact Form (simple alert for demo)
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('پیام شما ارسال شد!');
+        });
+    </script>
 </body>
 </html>
