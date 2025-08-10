@@ -5,11 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>سایت شخصی حسن</title>
 
-  <!-- فونت وزیر از CDN -->
+  <!-- فونت وزیر -->
   <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" />
 
   <style>
-    /* Reset */
     * {
       margin: 0; padding: 0; box-sizing: border-box;
       font-family: 'Vazir', Tahoma, Geneva, Verdana, sans-serif;
@@ -46,7 +45,6 @@
       top: 0;
       z-index: 100;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      transition: background-color 0.3s ease;
     }
     header h1 {
       font-size: 1.8rem;
@@ -211,9 +209,12 @@
       border-top: 1px solid #444;
     }
 
-    /* دکمه سوییچ حالت تاریک */
+    /* دکمه سوییچ حالت تاریک - گوشه بالا سمت راست */
     .dark-mode-toggle {
       cursor: pointer;
+      position: fixed;
+      top: 15px;
+      right: 15px;
       background: #004a99;
       border: none;
       border-radius: 6px;
@@ -222,9 +223,34 @@
       font-weight: 600;
       font-size: 0.9rem;
       transition: background 0.3s ease;
+      z-index: 150;
     }
     .dark-mode-toggle:hover {
       background: #002f66;
+    }
+
+    /* دکمه بالا بردن صفحه - گوشه پایین سمت راست */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #0078d7;
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      transition: background 0.3s ease;
+      z-index: 150;
+    }
+    #scrollTopBtn:hover {
+      background: #005ea2;
     }
 
     @media (max-width: 600px) {
@@ -247,31 +273,32 @@
       <a href="#projects">پروژه‌ها</a>
       <a href="#contact">تماس</a>
     </nav>
-    <button class="dark-mode-toggle" aria-label="تغییر حالت تاریک">🌙</button>
   </header>
+
+  <!-- دکمه تغییر حالت تاریک -->
+  <button class="dark-mode-toggle" aria-label="تغییر حالت تاریک">🌙</button>
+
   <main>
     <section id="about" class="about">
-      <h2>سلام، من حسن هستم</h2>
-      <p>علاقه‌مند به تکنولوژی، برنامه‌نویسی و طراحی وب.  
-      این سایت شخصی من است که نمونه کارها و اطلاعات تماس را می‌توانید اینجا ببینید.</p>
+      <h2>درباره من</h2>
+      <p>سلام! من حسن هستم. علاقه‌مند به برنامه‌نویسی، طراحی وب و تکنولوژی‌های جدید.</p>
     </section>
-    <section id="projects">
-      <h2>پروژه‌ها</h2>
-      <div class="projects">
-        <div class="project-card">
-          <h3>وبسایت فروشگاهی</h3>
-          <p>یک فروشگاه آنلاین مدرن و ریسپانسیو با امکانات کامل خرید و پرداخت.</p>
-        </div>
-        <div class="project-card">
-          <h3>اپلیکیشن موبایل</h3>
-          <p>اپ اندرویدی کاربردی با طراحی زیبا و رابط کاربری آسان.</p>
-        </div>
-        <div class="project-card">
-          <h3>ربات تلگرام</h3>
-          <p>ربات چت خودکار برای پاسخگویی به سوالات کاربران به صورت هوشمند.</p>
-        </div>
+
+    <section id="projects" class="projects">
+      <div class="project-card">
+        <h3>وبسایت فروشگاهی</h3>
+        <p>یک فروشگاه آنلاین مدرن و ریسپانسیو با امکانات کامل خرید و پرداخت.</p>
+      </div>
+      <div class="project-card">
+        <h3>اپلیکیشن موبایل</h3>
+        <p>اپ اندرویدی کاربردی با طراحی زیبا و رابط کاربری آسان.</p>
+      </div>
+      <div class="project-card">
+        <h3>ربات تلگرام</h3>
+        <p>ربات چت خودکار برای پاسخگویی به سوالات کاربران به صورت هوشمند.</p>
       </div>
     </section>
+
     <section id="contact" class="contact">
       <h2>تماس با من</h2>
       <form>
@@ -282,11 +309,16 @@
       </form>
     </section>
   </main>
+
   <footer>
     © 2025 حسن. همه حقوق محفوظ است.
   </footer>
 
+  <!-- دکمه اسکرول بالا -->
+  <button id="scrollTopBtn" aria-label="بازگشت به بالا">⬆️</button>
+
   <script>
+    // سوییچ حالت تاریک
     const toggleBtn = document.querySelector('.dark-mode-toggle');
     toggleBtn.addEventListener('click', () => {
       document.body.classList.toggle('dark');
@@ -297,6 +329,19 @@
         toggleBtn.textContent = '🌙';
         toggleBtn.setAttribute('aria-label', 'تغییر حالت تاریک');
       }
+    });
+
+    // دکمه اسکرول بالا
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 300) {
+        scrollBtn.style.display = 'flex';
+      } else {
+        scrollBtn.style.display = 'none';
+      }
+    });
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({top: 0, behavior: 'smooth'});
     });
   </script>
 </body>
