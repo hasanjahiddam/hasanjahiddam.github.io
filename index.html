@@ -1,317 +1,211 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سایت شخصی</title>
-    <style>
-        /* تنظیمات عمومی */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            direction: rtl;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>سایت شخصی حسن</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: #f0f8ff;
+      color: #222;
+      line-height: 1.6;
+      min-height: 100vh;
+      direction: rtl;
+    }
+    a {
+      color: #0078d7;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #005ea2;
+    }
+    header {
+      background: #0078d7;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    nav a {
+      margin-left: 1.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    nav a:last-child {
+      margin-left: 0;
+    }
+    main {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    section {
+      margin-bottom: 3rem;
+    }
+    .about {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,120,215,0.2);
+      text-align: center;
+    }
+    .about h2 {
+      margin-bottom: 1rem;
+      color: #0078d7;
+    }
+    .about p {
+      font-size: 1.1rem;
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 1rem;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+    .project-card h3 {
+      color: #0078d7;
+      margin-bottom: 0.5rem;
+    }
+    .project-card p {
+      font-size: 0.95rem;
+      color: #444;
+    }
+    .contact {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,120,215,0.2);
+    }
+    .contact h2 {
+      margin-bottom: 1rem;
+      color: #0078d7;
+      text-align: center;
+    }
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    input, textarea {
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      resize: vertical;
+      font-family: inherit;
+    }
+    input:focus, textarea:focus {
+      border-color: #0078d7;
+      outline: none;
+      box-shadow: 0 0 6px #0078d7aa;
+    }
+    button {
+      padding: 0.75rem;
+      background: #0078d7;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #005ea2;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+      background: #f0f8ff;
+      border-top: 1px solid #ddd;
+    }
 
-        body {
-            font-family: 'Vazir', sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-        }
-
-        /* استایل هدر */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #000000;
-            color: #fff;
-            padding: 10px 0;
-            z-index: 1000;
-            text-align: center;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-        }
-
-        nav ul li {
-            margin: 0 15px;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-            transition: color 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            color: #ff6347;
-        }
-
-        /* استایل دکمه منو برای موبایل */
-        .menu-toggle {
-            display: none;
-            font-size: 24px;
-            color: #fff;
-            cursor: pointer;
-            position: absolute;
-            right: 20px;
-            top: 15px;
-        }
-
-        /* تنظیمات واکنش‌گرا */
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                flex-direction: column;
-                background-color: #333;
-                position: absolute;
-                top: 50px;
-                right: 0;
-                width: 100%;
-                text-align: center;
-            }
-
-            nav ul.active {
-                display: flex;
-            }
-
-            nav ul li {
-                display: block;
-                padding: 10px 0;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-        }
-         @font-face {
-            font-family: fontfarsi;
-            src: url(font/384.Font.Farsi/Parand_MRT.TTF);
-         }
-        /* استایل بخش خانه */
-        #home {
-            height: 100vh;
-            background-color: #119816;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            font-family: fontfarsi;
-        }
-
-        #home h1 {
-            font-size: 3rem;
-            color: #fff;
-        }
-
-        #home p {
-            margin-top: 20px;
-            font-size: 1.2rem;
-            color: #fff;
-        }
-        @font-face {
-            font-family: fontfarsi1;
-            src: url(font/384.Font.Farsi/Aref_MRT.ttf);
-        }
-        /* استایل بخش درباره من */
-        #about {
-            padding: 50px 20px;
-            background-color: #fff;
-            text-align: center;
-            font-family: fontfarsi1;
-        }
-
-        #about h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        #about p {
-            font-size: 1.2rem;
-            color: #666;
-            line-height: 1.6;
-        }
-@font-face {
-    font-family: fontfarsi2;
-    src: url(font/384.Font.Farsi/Saadi\ Bold_MRT.TTF);
-}
-        /* استایل بخش پروژه‌ها */
-        #projects {
-            padding: 50px 20px;
-            background-color: #eee;
-            text-align: center;
-            font-family: fontfarsi2;
-        }
-
-        #projects h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .project-item {
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .project-item img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        .project-item h3 {
-            margin-top: 15px;
-            font-size: 1.5rem;
-            color: #333;
-        }
-@font-face {
-    font-family: fontfarsi3;
-    src: url(font/384.Font.Farsi/Flow\ Regular_MRT.ttf);
-}
-        /* استایل بخش تماس با ما */
-        #contact {
-            padding: 50px 20px;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            font-family: fontfarsi3;
-        }
-
-        #contact h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        #contact p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-
-        #contact form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #contact input, #contact textarea {
-            width: 100%;
-            max-width: 500px;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: none;
-            border-radius: 5px;
-        }
-
-        #contact button {
-            padding: 10px 20px;
-            background-color: #ff6347;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #contact button:hover {
-            background-color: #ff4500;
-        }
-@font-face {
-    font-family: fontfarsi5;
-    src: url(font/384.Font.Farsi/GEO885N.TTF);
-}
-        /* فوتر */
-        footer {
-            padding: 20px;
-            background-color: #222;
-            color: #fff;
-            text-align: center;
-            font-family: fontfarsi5;
-        }
-
-        footer p {
-            margin: 0;
-        }
-    </style>
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      nav a {
+        margin-left: 0.8rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<header>
-    <div class="menu-toggle" id="menuToggle">&#9776;</div>
-    <nav id="navMenu">
-        <ul>
-            <li><a href="#home">خانه</a></li>
-            <li><a href="#about">درباره من</a></li>
-            <li><a href="#projects">پروژه‌ها</a></li>
-            <li><a href="#contact">تماس</a></li>
-        </ul>
+  <header>
+    <h1>حسن</h1>
+    <nav>
+      <a href="#about">درباره من</a>
+      <a href="#projects">پروژه‌ها</a>
+      <a href="#contact">تماس</a>
     </nav>
-</header>
-
-<section id="home">
-    <h1>سلام، من طراح و توسعه‌دهنده وب هستم!</h1>
-    <p>علاقه‌مند به فناوری و خلق پروژه‌های نوآورانه</p>
-</section>
-
-<section id="about">
-    <h2>درباره من</h2>
-    <p>من یک برنامه‌نویس و طراح وب هستم که علاقه زیادی به تکنولوژی و نوآوری دارم. هدف من ایجاد وبسایت‌های جذاب و کاربرپسند است.</p>
-</section>
-
-<section id="projects">
-    <h2>پروژه‌ها</h2>
-    <div class="project-grid">
-        <div class="project-item">
-            <img src="imge/49755074978215Ai.jpg" alt="Project 1">
-            <h3>پروژه وجود ندارد</h3>
+  </header>
+  <main>
+    <section id="about" class="about">
+      <h2>سلام، من حسن هستم</h2>
+      <p>علاقه‌مند به تکنولوژی، برنامه‌نویسی و طراحی وب.  
+      این سایت شخصی من است که نمونه کارها و اطلاعات تماس را می‌توانید اینجا ببینید.</p>
+    </section>
+    <section id="projects">
+      <h2>پروژه‌ها</h2>
+      <div class="projects">
+        <div class="project-card">
+          <h3>پروژه اول</h3>
+          <p>ساخت یک وبسایت ساده و مدرن با HTML و CSS.</p>
         </div>
-        <div class="project-item">
-            <img src="imge/49755074978215Ai.jpg" alt="Project 2">
-            <h3>پروژه وجود ندارد</h3>
+        <div class="project-card">
+          <h3>پروژه دوم</h3>
+          <p>ساخت یک اپلیکیشن موبایل با React Native.</p>
         </div>
-        <!-- پروژه‌های دیگر -->
-    </div>
-</section>
-
-<section id="contact">
-    <h2>تماس با من</h2>
-    <p>برای ارتباط با من از طریق فرم زیر پیام ارسال کنید:</p>
-    <form>
-        <input type="text" placeholder="نام شما" required>
-        <input type="email" placeholder="ایمیل شما" required>
-        <textarea placeholder="پیام شما" rows="5" required></textarea>
-        <button type="submit">ارسال پیام</button>
-    </form>
-</section>
-
-<footer>
-    <p>&copy; 2024 طراحی شده توسط HassaN TalebI</p>
-</footer>
-
-<script>
-    const menuToggle = document.getElementById('menuToggle');
-    const navMenu = document.getElementById('navMenu');
-
-    menuToggle.addEventListener('click', () => {
-        navMenu.querySelector('ul').classList.toggle('active');
-    });
-</script>
-
+        <div class="project-card">
+          <h3>پروژه سوم</h3>
+          <p>طراحی یک رابط کاربری جذاب برای سایت.</p>
+        </div>
+      </div>
+    </section>
+    <section id="contact" class="contact">
+      <h2>تماس با من</h2>
+      <form onsubmit="alert('پیام ارسال شد!'); return false;">
+        <input type="text" placeholder="نام شما" required />
+        <input type="email" placeholder="ایمیل شما" required />
+        <textarea rows="4" placeholder="پیام شما" required></textarea>
+        <button type="submit">ارسال</button>
+      </form>
+    </section>
+  </main>
+  <footer>
+    © 2025 حسن. همه حقوق محفوظ است.
+  </footer>
 </body>
 </html>
