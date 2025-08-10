@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>وب‌سایت شخصی من</title>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -109,6 +110,38 @@
             40% { transform: scale(1); }
         }
 
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transition: all 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
+        }
+        #mobile-menu:not(.hidden) {
+            max-height: 500px;
+        }
+
+        /* Smooth scrolling for mobile menu */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 3D Flip Styles */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .preserve-3d {
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+        .group-hover\:rotate-y-180:hover {
+            transform: rotateY(180deg);
+        }
+
         /* Mobile Adjustments */
         @media (max-width: 768px) {
             .hero h2 {
@@ -142,16 +175,34 @@
         <p class="mt-4 text-lg font-semibold text-blue-600 dark:text-blue-300">در حال بارگذاری...</p>
     </div>
 
-    <!-- Navigation with Playful Hover -->
+    <!-- Navigation with Hamburger Menu -->
     <nav class="bg-gradient-to-r from-blue-600 to-indigo-500 dark:from-blue-800 dark:to-indigo-700 p-4 shadow-lg fixed w-full z-10">
         <div class="container mx-auto flex justify-between items-center">
             <h1 class="text-white text-3xl font-bold hover:scale-105 transition duration-300">وب‌سایت من</h1>
-            <ul class="flex space-x-6 space-x-reverse md:space-x-4">
-                <li><a href="#about" class="text-white hover:text-yellow-300 transition duration-300 hover:scale-110">درباره من</a></li>
+            
+            <!-- Hamburger Menu Button (Mobile) -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+            
+            <!-- Desktop Menu -->
+            <ul class="hidden md:flex space-x-6 space-x-reverse md:space-x-4">
+                <li><a href="#about" class="text-white hover:text-yellow-300 transition duration-300 hover:scale-110">درباره من   </a></li>
                 <li><a href="#skills" class="text-white hover:text-yellow-300 transition duration-300 hover:scale-110">مهارت‌ها</a></li>
                 <li><a href="#portfolio" class="text-white hover:text-yellow-300 transition duration-300 hover:scale-110">پورتفولیو</a></li>
                 <li><a href="#blog" class="text-white hover:text-yellow-300 transition duration-300 hover:scale-110">بلاگ</a></li>
                 <li><a href="#contact" class="text-white hover:text-yellow-300 transition duration-300 hover:scale-110">تماس</a></li>
+            </ul>
+        </div>
+        
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gradient-to-b from-blue-600 to-indigo-500 dark:from-blue-800 dark:to-indigo-700">
+            <ul class="flex flex-col space-y-4 p-4">
+                <li><a href="#about" class="block text-white hover:text-yellow-300 transition duration-300 py-2">درباره من</a></li>
+                <li><a href="#skills" class="block text-white hover:text-yellow-300 transition duration-300 py-2">مهارت‌ها</a></li>
+                <li><a href="#portfolio" class="block text-white hover:text-yellow-300 transition duration-300 py-2">پورتفولیو</a></li>
+                <li><a href="#blog" class="block text-white hover:text-yellow-300 transition duration-300 py-2">بلاگ</a></li>
+                <li><a href="#contact" class="block text-white hover:text-yellow-300 transition duration-300 py-2">تماس</a></li>
             </ul>
         </div>
     </nav>
@@ -283,13 +334,58 @@
                 <button type="submit" class="bg-gradient-to-r from-blue-600 to-blue-400 text-white px-10 py-5 rounded-full font-bold hover:from-blue-700 hover:to-blue-500 transition duration-300 hover:scale-105">ارسال</button>
             </form>
             <div class="flex justify-center space-x-6 space-x-reverse mt-10">
-                <a href="mailto:your.email@example.com" class="text-blue-600 dark:text-blue-400 hover:text-yellow-300 transition duration-300 text-2xl">📧</a>
-                <a href="https://t.me/yourusername" class="text-blue-600 dark:text-blue-400 hover:text-yellow-300 transition duration-300 text-2xl">📱</a>
-                <a href="https://instagram.com/yourusername" class="text-blue-600 dark:text-blue-400 hover:text-yellow-300 transition duration-300 text-2xl">📸</a>
+                 <a href="mailto:hasanjahiddam@gmail.com" 
+           class="social-icon bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 hover:bg-metallic hover:text-white transition-all duration-300">
+          <i class="fas fa-envelope"></i>
+        </a>
+                 <a href="https://t.me/yourusername" 
+           class="social-icon bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 hover:bg-blue-500 hover:text-white transition-all duration-300">
+          <i class="fab fa-telegram-plane"></i>
+        </a>
+                 <a href="https://instagram.com/root._.exploit" 
+           class="social-icon bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 hover:bg-pink-600 hover:text-white transition-all duration-300">
+          <i class="fab fa-instagram"></i>
+        </a>
+         <a href="https://github.com/hasanjahiddam" 
+                       class="social-icon bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 hover:bg-gray-800 hover:text-white transition-all duration-300">
+                        <i class="fab fa-github"></i>
+                    </a>
             </div>
         </div>
     </section>
-
+<style>
+  /* استایل سفارشی برای آیکون‌ها */
+  .social-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .social-icon:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* انیمیشن برای ضربان قلب */
+  @keyframes heartbeat {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.1); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  
+  .fa-heart {
+    animation: heartbeat 1.5s infinite;
+    display: inline-block;
+  }
+</style>
     <!-- Footer with Social Links -->
     <footer class="bg-gradient-to-r from-blue-600 to-indigo-500 dark:from-blue-800 dark:to-indigo-700 text-white py-8">
         <div class="container mx-auto text-center">
@@ -399,24 +495,34 @@
                 alert('لطفاً تمام فیلدها را پر کنید!');
             }
         });
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            
+            // Change icon based on menu state
+            const icon = mobileMenuButton.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                const icon = mobileMenuButton.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
     </script>
-    <style>
-        /* 3D Flip Styles */
-        .perspective-1000 {
-            perspective: 1000px;
-        }
-        .preserve-3d {
-            transform-style: preserve-3d;
-        }
-        .backface-hidden {
-            backface-visibility: hidden;
-        }
-        .rotate-y-180 {
-            transform: rotateY(180deg);
-        }
-        .group-hover\:rotate-y-180:hover {
-            transform: rotateY(180deg);
-        }
-    </style>
 </body>
 </html>
